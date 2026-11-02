@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamiento Thom & Mart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vino: '#722F37',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #722F37;
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="bg-vino text-white font-sans antialiased">
+
+    <!-- Hero Section con foto de fondo y overlay oscuro -->
+    <header class="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        <!-- Imagen de fondo de Google Drive adaptada para enlace directo -->
+        <div class="absolute inset-0 bg-cover bg-center z-0 filter brightness-50" style="background-image: url('https://lh3.googleusercontent.com/d/1EzgB8kYpqWTUFGMjVXKtzBr8IuK1rN4P=w1920');"></div>
+        <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+        <div class="relative z-10 text-white mt-20">
+            <p class="uppercase tracking-[0.3em] text-sm md:text-base mb-6 font-medium text-white">¡Nos casamos!</p>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl mb-6 italic whitespace-nowrap">Thom <span class="text-4xl md:text-5xl lg:text-6xl text-white mx-2">&</span> Mart</h1>
+            <div class="w-24 h-[1px] bg-white mx-auto mb-8"></div>
+            <button onclick="openRsvpModal()" class="bg-white/20 hover:bg-white hover:text-vino text-white font-medium py-3 px-10 rounded-full transition-colors duration-300 border border-white/30 uppercase tracking-widest text-sm shadow-lg backdrop-blur-sm">RSVP</button>
+        </div>
+    </header>
+
+    <!-- Sección de Detalles del Evento -->
+    <section class="py-16 px-6 border-t border-vino/20 text-center bg-white">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-serif text-3xl md:text-4xl mb-8 italic text-vino">Faltan...</h2>
+            
+            <div id="countdown" class="flex justify-center gap-6 md:gap-12 mb-16 font-sans">
+                <div class="flex flex-col items-center"><span id="days" class="font-serif text-4xl md:text-6xl text-vino">00</span><span class="text-xs md:text-sm uppercase tracking-widest mt-2 text-vino">Días</span></div>
+                <div class="flex flex-col items-center"><span id="hours" class="font-serif text-4xl md:text-6xl text-vino">00</span><span class="text-xs md:text-sm uppercase tracking-widest mt-2 text-vino">Hs</span></div>
+                <div class="flex flex-col items-center"><span id="minutes" class="font-serif text-4xl md:text-6xl text-vino">00</span><span class="text-xs md:text-sm uppercase tracking-widest mt-2 text-vino">Min</span></div>
+                <div class="flex flex-col items-center"><span id="seconds" class="font-serif text-4xl md:text-6xl text-vino">00</span><span class="text-xs md:text-sm uppercase tracking-widest mt-2 text-vino">Seg</span></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center border-t border-vino/20 pt-16">
+                <!-- Dónde -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-vino/10 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-vino" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-vino">Dónde</h3>
+                    <p class="font-light text-lg mb-4 text-vino/90">Estancia Santa Lucía</p>
+                    <a href="https://www.google.com/maps/dir//Santa+Luc%C3%ADa+-+Eventos+Corporativos+y+Sociales,+KM+170,+RP6,+B6708+Pilar,+Provincia+de+Buenos+Aires/@-34.4189009,-58.8404163,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95bb7e2ff2653dd9:0x802555d9783c01b2!2m2!1d-59.0468113!2d-34.4378675?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block bg-vino/10 hover:bg-vino hover:text-white text-vino font-medium py-2 px-5 rounded-full transition-colors duration-300 border border-vino/30 text-sm">
+                        Cómo llegar
+                    </a>
+                </div>
+                <!-- Cuándo -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-vino/10 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-vino" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-vino">Cuándo</h3>
+                    <p class="font-light text-lg text-vino/90">Viernes 29 de enero de 2027<br>Ceremonia: 18.30 hs</p>
+                </div>
+                <!-- Dress Code -->
+                <div class="flex flex-col items-center">
+                    <div class="w-14 h-14 rounded-full bg-vino/10 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-vino" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-vino">Dress Code</h3>
+                    <p class="font-light text-lg mb-4 text-vino/90">Formal / Elegante</p>
+                    <a href="https://pin.it/6zADEBrw7" target="_blank" class="inline-block bg-vino/10 hover:bg-vino hover:text-white text-vino font-medium py-2 px-5 rounded-full transition-colors duration-300 border border-vino/30 text-sm">
+                        Ver referencias
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Regalos -->
+    <section class="py-20 px-6 border-t border-white/20 bg-vino" id="regalos">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="font-serif text-4xl md:text-5xl mb-6 text-white">Lista de Regalos</h2>
+            <p class="text-lg md:text-xl font-light text-white/90 max-w-3xl mx-auto mb-4">
+                Nuestro festejo no termina en esta fiesta... continua con destino al Sudeste asiático. Si quieren regalarnos algo, nos gustaría que nos acompañen en nuestra luna de miel.
+            </p>
+            <p class="text-sm md:text-base text-white/80 max-w-2xl mx-auto mb-10 italic bg-white/5 py-2 px-4 rounded-full border border-white/10 inline-block">
+                Gracias por estar en cada paso de esta nueva etapa ❤️
+            </p>
+
+            <!-- Filtro de orden por precio -->
+            <div class="flex justify-center items-center gap-3 mb-12">
+                <span class="text-sm text-white/80 font-medium">Ordenar por:</span>
+                <select id="sortOrder" onchange="sortGifts()" class="bg-white/10 border border-white/20 text-white text-sm rounded-full py-2 px-4 focus:outline-none focus:border-white">
+                    <option value="asc" class="bg-vino text-white">Menor a Mayor precio</option>
+                    <option value="desc" class="bg-vino text-white">Mayor a Menor precio</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gifts-container">
+                <!-- Regalos generados dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/20 py-12 text-center bg-vino">
+        <h2 class="font-serif text-3xl mb-4 italic text-white">¡Los esperamos!</h2>
+        <p class="font-light text-sm text-white">Thom & Mart • 2027</p>
+    </footer>
+
+    <!-- Panel de Administración Oculto (Se muestra al agregar #admin en la URL) -->
+    <div id="adminPanel" class="hidden fixed inset-0 z-50 bg-vino overflow-y-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto bg-black/30 p-8 rounded-3xl border border-white/20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-serif text-3xl text-white">🎁 Panel de Regalos Recibidos</h2>
+                <a href="#" onclick="document.getElementById('adminPanel').classList.add('hidden'); window.location.hash='';" class="text-white/70 hover:text-white text-sm underline">Cerrar panel</a>
+            </div>
+            <p class="text-white/80 text-sm mb-6">Aquí podés ver todos los registros actualizados en tiempo real de quienes eligieron regalarles algo.</p>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-white/20 text-white/70 text-xs uppercase tracking-wider">
+                            <th class="py-3 px-4">Fecha</th>
+                            <th class="py-3 px-4">Invitado</th>
+                            <th class="py-3 px-4">Regalo Elegido</th>
+                            <th class="py-3 px-4">Mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody" class="divide-y divide-white/10 text-sm font-light">
+                        <tr>
+                            <td colspan="4" class="py-6 text-center text-white/50">Cargando registros...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabla de Asistencias (RSVP) -->
+            <div class="flex justify-between items-center mb-6 mt-16 border-t border-white/20 pt-10">
+                <h2 class="font-serif text-3xl text-white">📝 Asistencias Confirmadas</h2>
+            </div>
+            <p class="text-white/80 text-sm mb-6">Listado de invitados que completaron el formulario de RSVP.</p>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-white/20 text-white/70 text-xs uppercase tracking-wider">
+                            <th class="py-3 px-4">Fecha</th>
+                            <th class="py-3 px-4">Nombre</th>
+                            <th class="py-3 px-4">Mail</th>
+                            <th class="py-3 px-4">Celular</th>
+                            <th class="py-3 px-4">Menú Especial</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminRsvpTableBody" class="divide-y divide-white/10 text-sm font-light">
+                        <tr>
+                            <td colspan="5" class="py-6 text-center text-white/50">Cargando registros...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal RSVP -->
+    <div id="rsvpModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeRsvpModal()"></div>
+        
+        <div class="relative bg-vino border border-white/20 rounded-3xl shadow-2xl w-full max-w-md p-8 transform transition-all text-white">
+            <button onclick="closeRsvpModal()" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="text-center mb-6">
+                <h3 class="font-serif text-3xl text-white mb-4">Confirmar Asistencia</h3>
+                <div class="bg-white/10 p-3 rounded-xl border border-white/20 inline-block mb-2">
+                    <p class="font-medium text-xs text-white uppercase tracking-wide">Importante:</p>
+                    <p class="font-light text-sm text-white/90 mt-1">Completar la información de manera individual.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <input type="text" id="rsvpName" placeholder="Nombre y apellido" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+                <input type="email" id="rsvpEmail" placeholder="Mail" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+                <input type="tel" id="rsvpPhone" placeholder="Celular" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+                
+                <select id="rsvpMenu" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 focus:outline-none focus:border-white appearance-none">
+                    <option value="" disabled selected class="text-gray-400">Menú especial (Opcional)</option>
+                    <option value="Ninguno" class="bg-vino text-white">Ninguno</option>
+                    <option value="Celíaco" class="bg-vino text-white">Celíaco</option>
+                    <option value="Vegetariano" class="bg-vino text-white">Vegetariano</option>
+                    <option value="Vegano" class="bg-vino text-white">Vegano</option>
+                    <option value="Infantil" class="bg-vino text-white">Infantil</option>
+                </select>
+            </div>
+            
+            <div class="mt-8">
+                <button onclick="submitRsvp()" id="submitRsvpBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal con cuentas en pesos y dólares -->
+    <div id="bankModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <div class="relative bg-vino border border-white/20 rounded-3xl shadow-2xl w-full max-w-lg p-8 transform transition-all text-white">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="text-center mb-6">
+                <h3 class="font-serif text-2xl text-white mb-2" id="modalTitle">Datos Bancarios</h3>
+                <p class="font-light text-sm text-white/80">Podés transferir en Pesos o en Dólares según prefieras.</p>
+            </div>
+
+            <div class="space-y-4 max-h-[50vh] overflow-y-auto pr-1">
+                <!-- Cuenta en Pesos -->
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-left">
+                    <p class="text-xs text-white uppercase tracking-wider mb-2 font-semibold">🇦🇷 Cuenta en Pesos (ARS)</p>
+                    <div class="mb-2">
+                        <p class="text-[11px] text-white/60">N° de cuenta:</p>
+                        <p class="font-medium text-white font-mono text-sm">CA $ 27090832118250</p>
+                    </div>
+                    <div class="mb-2">
+                        <p class="text-[11px] text-white/60">CBU:</p>
+                        <p class="font-medium text-white font-mono text-sm">0110083930008321182501</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-white/60">Alias:</p>
+                        <p class="font-medium text-white font-mono text-sm">Thomas.martina.ars</p>
+                    </div>
+                </div>
+
+                <!-- Cuenta en Dólares -->
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-left">
+                    <p class="text-xs text-white uppercase tracking-wider mb-2 font-semibold">🇺🇸 Cuenta en Dólares (USD)</p>
+                    <div class="mb-2">
+                        <p class="text-[11px] text-white/60">N° de cuenta:</p>
+                        <p class="font-medium text-white font-mono text-sm">CA U$S 27090832001480</p>
+                    </div>
+                    <div class="mb-2">
+                        <p class="text-[11px] text-white/60">CBU:</p>
+                        <p class="font-medium text-white font-mono text-sm">0110083931008320014802</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-white/60">Alias:</p>
+                        <p class="font-medium text-white font-mono text-sm">Thomas.martina.usd</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <input type="text" id="guestName" placeholder="Tu Nombre y Apellido" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 mb-3 placeholder-white/50 focus:outline-none focus:border-white">
+                    <textarea id="guestMessage" rows="2" placeholder="Dejanos un mensajito..." class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white resize-none"></textarea>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <button onclick="submitGift()" id="submitBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK & Database Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'boda-thom-mart-2027';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+
+        let db, auth;
+        
+        async function initApp() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                // 1. Aseguramos la autenticación ANTES de consultar los datos
+                const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : undefined;
+                if (token) {
+                    try {
+                        await signInWithCustomToken(auth, token);
+                    } catch (e) {
+                        await signInAnonymously(auth);
+                    }
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Si por alguna razón falló la conexión, detenemos acá
+                if (!auth.currentUser) return;
+
+                // 2. Escuchar registros en tiempo real para el panel de administración
+                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'regalos_casamiento'));
+                onSnapshot(q, (snapshot) => {
+                    const tbody = document.getElementById("adminTableBody");
+                    if (!tbody) return;
+                    tbody.innerHTML = "";
+                    if (snapshot.empty) {
+                        tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-white/50">Todavía no hay regalos registrados.</td></tr>`;
+                        return;
+                    }
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const dateStr = data.fecha ? new Date(data.fecha).toLocaleString('es-AR') : '-';
+                        const row = `
+                            <tr class="border-b border-white/10">
+                                <td class="py-3 px-4 text-xs text-white/70">${dateStr}</td>
+                                <td class="py-3 px-4 font-medium">${data.invitado || 'Anónimo'}</td>
+                                <td class="py-3 px-4 text-white/90">${data.regalo}</td>
+                                <td class="py-3 px-4 italic text-white/80">${data.mensaje || '-'}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                }, (error) => {
+                    console.error("Error cargando panel:", error);
+                });
+
+                // 3. Escuchar registros de RSVP
+                const qRsvp = query(collection(db, 'artifacts', appId, 'public', 'data', 'rsvp_casamiento'));
+                onSnapshot(qRsvp, (snapshot) => {
+                    const tbody = document.getElementById("adminRsvpTableBody");
+                    if (!tbody) return;
+                    tbody.innerHTML = "";
+                    if (snapshot.empty) {
+                        tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-white/50">Todavía no hay asistencias confirmadas.</td></tr>`;
+                        return;
+                    }
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const dateStr = data.fecha ? new Date(data.fecha).toLocaleString('es-AR') : '-';
+                        const row = `
+                            <tr class="border-b border-white/10">
+                                <td class="py-3 px-4 text-xs text-white/70">${dateStr}</td>
+                                <td class="py-3 px-4 font-medium">${data.nombre || '-'}</td>
+                                <td class="py-3 px-4 text-white/90">${data.email || '-'}</td>
+                                <td class="py-3 px-4 text-white/90">${data.celular || '-'}</td>
+                                <td class="py-3 px-4 text-white/80">${data.menu || 'Ninguno'}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                }, (error) => {
+                    console.error("Error cargando panel RSVP:", error);
+                });
+
+            } catch (e) {
+                console.error("Firebase init error:", e);
+            }
+        }
+        
+        initApp();
+
+        window.saveGiftToCloud = async function(giftName, name, message) {
+            // Guardamos solo si hay usuario autenticado
+            if (!db || !auth.currentUser) return;
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'regalos_casamiento'), {
+                    regalo: giftName,
+                    invitado: name || "Anónimo",
+                    mensaje: message || "",
+                    fecha: new Date().toISOString()
+                });
+            } catch (err) {
+                console.error("Error saving gift:", err);
+            }
+        };
+
+        window.saveRsvpToCloud = async function(name, email, phone, menu) {
+            // Guardamos solo si hay usuario autenticado
+            if (!db || !auth.currentUser) return;
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'rsvp_casamiento'), {
+                    nombre: name,
+                    email: email,
+                    celular: phone,
+                    menu: menu || "Ninguno",
+                    fecha: new Date().toISOString()
+                });
+            } catch (err) {
+                console.error("Error saving RSVP:", err);
+            }
+        };
+    </script>
+
+    <script>
+        // Cuenta regresiva ajustada al 29 de enero de 2027 a las 18:30 hs
+        const weddingDate = new Date("Jan 29, 2027 18:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            document.getElementById("days").innerText = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
+            document.getElementById("hours").innerText = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            document.getElementById("minutes").innerText = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+            document.getElementById("seconds").innerText = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
+        }, 1000);
+
+        // Lista de regalos con montos exactos requeridos (50 a 2000 USD)
+        const gifts = [
+            { name: "Masajes balineses", usd: 50, img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=80" },
+            { name: "Experiencia nadar con tortugas", usd: 80, img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=80" },
+            { name: "Excursión en islas Phi Phi", usd: 100, img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80" },
+            { name: "Noche de hotel en Ubud", usd: 150, img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" },
+            { name: "Cena en un rooftop de Estambul", usd: 200, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=80" },
+            { name: "Noche de hotel en Bangkok", usd: 300, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&q=80" },
+            { name: "Hoteles y tours guiados en Singapour", usd: 500, img: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=500&q=80" },
+            { name: "Paisajes internos por Tailandia", usd: 750, img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&q=80" },
+            { name: "Hospedaje de lujo en Bali", usd: 1000, img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500&q=80" },
+            { name: "Alojamiento exclusivo en islas Phi Phi x 7 noches", usd: 1500, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" },
+            { name: "Pasaje ida y vuelta Buenos Aires - Sudeste", usd: 2000, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=80" }
+        ];
+
+        let selectedGift = "";
+        let currentDolarPrice = 1000;
+
+        async function loadGifts() {
+            try {
+                const response = await fetch('https://dolarapi.com/v1/dolares/oficial');
+                const data = await response.json();
+                currentDolarPrice = data.venta;
+            } catch (error) {
+                console.error("Error cargando cotización oficial", error);
+            }
+            renderGifts();
+        }
+
+        function renderGifts() {
+            const sortVal = document.getElementById("sortOrder").value;
+            const sortedGifts = [...gifts].sort((a, b) => {
+                return sortVal === 'asc' ? a.usd - b.usd : b.usd - a.usd;
+            });
+
+            const container = document.getElementById("gifts-container");
+            container.innerHTML = "";
+            sortedGifts.forEach(gift => {
+                const arsValue = Math.round(gift.usd * currentDolarPrice).toLocaleString('es-AR');
+                const card = `
+                    <div class="bg-white/5 rounded-2xl overflow-hidden shadow-lg border border-white/10 flex flex-col transition-transform hover:-translate-y-2 duration-300">
+                        <div class="h-48 w-full overflow-hidden">
+                            <img src="${gift.img}" alt="${gift.name}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/500x300/722F37/FFFFFF?text=Luna+de+Miel'">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow items-center text-center">
+                            <h3 class="font-serif text-xl mb-3 text-white">${gift.name}</h3>
+                            <p class="font-sans font-semibold text-white mb-5">$${gift.usd} USD <br><span class="text-xs text-white/70 font-light">~$${arsValue} ARS</span></p>
+                            <button onclick="openModal('${gift.name}')" class="w-full mt-auto bg-white/10 hover:bg-white hover:text-vino text-white font-medium py-3 px-6 rounded-full transition-colors duration-300 border border-white/30 hover:border-white">
+                                Regalar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function sortGifts() {
+            renderGifts();
+        }
+
+        const modal = document.getElementById('bankModal');
+
+        function openModal(giftName) {
+            selectedGift = giftName;
+            document.getElementById("modalTitle").innerText = "Regalo: " + giftName;
+            document.getElementById("guestName").value = "";
+            document.getElementById("guestMessage").value = "";
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        async function submitGift() {
+            const name = document.getElementById("guestName").value.trim();
+            const message = document.getElementById("guestMessage").value.trim();
+            
+            const btn = document.getElementById("submitBtn");
+            btn.innerText = "Guardando...";
+            btn.disabled = true;
+
+            if (typeof window.saveGiftToCloud === 'function') {
+                await window.saveGiftToCloud(selectedGift, name, message);
+            }
+
+            btn.innerText = "¡Confirmado!";
+            setTimeout(() => {
+                btn.innerText = "Confirmar";
+                btn.disabled = false;
+                closeModal();
+            }, 1000);
+        }
+
+        // Lógica del Modal RSVP
+        const rsvpModal = document.getElementById('rsvpModal');
+
+        function openRsvpModal() {
+            document.getElementById("rsvpName").value = "";
+            document.getElementById("rsvpEmail").value = "";
+            document.getElementById("rsvpPhone").value = "";
+            document.getElementById("rsvpMenu").value = "";
+            rsvpModal.classList.remove('hidden');
+        }
+
+        function closeRsvpModal() {
+            rsvpModal.classList.add('hidden');
+        }
+
+        async function submitRsvp() {
+            const name = document.getElementById("rsvpName").value.trim();
+            const email = document.getElementById("rsvpEmail").value.trim();
+            const phone = document.getElementById("rsvpPhone").value.trim();
+            const menu = document.getElementById("rsvpMenu").value;
+
+            if (!name) {
+                // Simulación de alerta visual cambiando el placeholder
+                const nameInput = document.getElementById("rsvpName");
+                nameInput.placeholder = "⚠️ Por favor ingresá tu nombre";
+                nameInput.classList.add("border-red-400");
+                setTimeout(() => { nameInput.classList.remove("border-red-400"); }, 2000);
+                return;
+            }
+            
+            const btn = document.getElementById("submitRsvpBtn");
+            btn.innerText = "Guardando...";
+            btn.disabled = true;
+
+            if (typeof window.saveRsvpToCloud === 'function') {
+                await window.saveRsvpToCloud(name, email, phone, menu);
+            }
+
+            btn.innerText = "¡Confirmado!";
+            setTimeout(() => {
+                btn.innerText = "Confirmar";
+                btn.disabled = false;
+                closeRsvpModal();
+            }, 1500);
+        }
+
+        // Chequear si se abrió el panel de admin con #admin en la URL
+        window.addEventListener('hashchange', checkAdmin);
+        window.addEventListener('load', () => {
+            checkAdmin();
+            loadGifts();
+        });
+
+        function checkAdmin() {
+            const panel = document.getElementById('adminPanel');
+            if (window.location.hash === '#admin') {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
