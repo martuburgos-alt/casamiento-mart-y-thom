@@ -32,9 +32,9 @@
 </head>
 <body class="bg-vino text-white font-sans antialiased">
 
-    <!-- Hero Section con foto de fondo y overlay oscuro -->
+    <!-- Hero Section con la foto que subiste de fondo -->
     <header class="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center z-0 filter brightness-50" style="background-image: url('https://lh3.googleusercontent.com/d/1EzgB8kYpqWTUFGMjVXKtzBr8IuK1rN4P=w1920');"></div>
+        <div class="absolute inset-0 bg-cover bg-center z-0 filter brightness-50" style="background-image: url('f3ea323c-2686-4df3-8750-ac6255cf9bd9.jpg');"></div>
         <div class="absolute inset-0 bg-black/40 z-0"></div>
 
         <div class="relative z-10 text-white mt-20">
@@ -309,7 +309,6 @@
 
                 if (!auth.currentUser) return;
 
-                // Escuchar REGALOS directamente en la colección principal
                 const q = query(collection(db, 'regalos_casamiento'));
                 onSnapshot(q, (snapshot) => {
                     const tbody = document.getElementById("adminTableBody");
@@ -336,7 +335,6 @@
                     console.error("Error cargando panel de regalos:", error);
                 });
 
-                // Escuchar RSVP directamente en la colección principal
                 const qRsvp = query(collection(db, 'rsvp_casamiento'));
                 onSnapshot(qRsvp, (snapshot) => {
                     const tbody = document.getElementById("adminRsvpTableBody");
