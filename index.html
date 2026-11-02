@@ -297,7 +297,6 @@
             measurementId: "G-RFRXN3P9N3"
         };
 
-        const appId = 'boda-thom-mart-2027';
         let db, auth;
         
         async function initApp() {
@@ -310,7 +309,8 @@
 
                 if (!auth.currentUser) return;
 
-                const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'regalos_casamiento'));
+                // Escuchar REGALOS directamente en la colección principal
+                const q = query(collection(db, 'regalos_casamiento'));
                 onSnapshot(q, (snapshot) => {
                     const tbody = document.getElementById("adminTableBody");
                     if (!tbody) return;
@@ -333,10 +333,11 @@
                         tbody.innerHTML += row;
                     });
                 }, (error) => {
-                    console.error("Error cargando panel:", error);
+                    console.error("Error cargando panel de regalos:", error);
                 });
 
-                const qRsvp = query(collection(db, 'artifacts', appId, 'public', 'data', 'rsvp_casamiento'));
+                // Escuchar RSVP directamente en la colección principal
+                const qRsvp = query(collection(db, 'rsvp_casamiento'));
                 onSnapshot(qRsvp, (snapshot) => {
                     const tbody = document.getElementById("adminRsvpTableBody");
                     if (!tbody) return;
@@ -373,7 +374,7 @@
         window.saveGiftToCloud = async function(giftName, name, message) {
             if (!db || !auth.currentUser) return;
             try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'regalos_casamiento'), {
+                await addDoc(collection(db, 'regalos_casamiento'), {
                     regalo: giftName,
                     invitado: name || "Anónimo",
                     mensaje: message || "",
@@ -387,7 +388,7 @@
         window.saveRsvpToCloud = async function(name, email, phone, menu) {
             if (!db || !auth.currentUser) return;
             try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'rsvp_casamiento'), {
+                await addDoc(collection(db, 'rsvp_casamiento'), {
                     nombre: name,
                     email: email,
                     celular: phone,
