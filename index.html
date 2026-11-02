@@ -75,7 +75,7 @@
                         <svg class="w-6 h-6 text-vino" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-vino">Cuándo</h3>
-                    <p class="font-light text-lg text-vino/90">Viernes 29 de enero de 2027<br>Ceremonia: 18.30 hs</p>
+                    <p class="font-light text-lg text-vino/90">Viernes 29 de enero de 2027<br>18.30 hs</p>
                 </div>
                 <!-- Dress Code -->
                 <div class="flex flex-col items-center">
@@ -191,7 +191,7 @@
                 <h3 class="font-serif text-3xl text-white mb-4">Confirmar Asistencia</h3>
                 <div class="bg-white/10 p-3 rounded-xl border border-white/20 inline-block mb-2">
                     <p class="font-medium text-xs text-white uppercase tracking-wide">Importante:</p>
-                    <p class="font-light text-sm text-white/90 mt-1">Completar la información de manera individual.</p>
+                    <p class="font-light text-sm text-white/90 mt-1">Completar la información de maneira individual.</p>
                 </div>
             </div>
 
@@ -219,7 +219,7 @@
         </div>
     </div>
 
-    <!-- Modal de Regalos (Formulario primero, Cuentas bancarias después) -->
+    <!-- Modal de Regalos (Formulario primero, Dólares arriba y Pesos abajo) -->
     <div id="bankModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
         
@@ -230,7 +230,7 @@
             
             <div class="text-center mb-6">
                 <h3 class="font-serif text-2xl text-white mb-2" id="modalTitle">Datos Bancarios</h3>
-                <p class="font-light text-sm text-white/80">Completá tus datos y luego transferí en Pesos o Dólares.</p>
+                <p class="font-light text-sm text-white/80">Completá tus datos y luego transferí en Dólares o Pesos.</p>
             </div>
 
             <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
@@ -245,28 +245,11 @@
                     </button>
                 </form>
 
-                <!-- 2. CUENTAS BANCARIAS DESPUÉS -->
+                <!-- 2. CUENTAS BANCARIAS (Dólares arriba, Pesos abajo) -->
                 <div class="space-y-3 pt-2">
                     <p class="text-xs text-white uppercase tracking-wider font-semibold text-left">🏦 Cuentas para transferir</p>
                     
-                    <!-- Cuenta en Pesos -->
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-left">
-                        <p class="text-xs text-white uppercase tracking-wider mb-2 font-semibold">🇦🇷 Cuenta en Pesos (ARS)</p>
-                        <div class="mb-2">
-                            <p class="text-[11px] text-white/60">N° de cuenta:</p>
-                            <p class="font-medium text-white font-mono text-sm">CA $ 27090832118250</p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-[11px] text-white/60">CBU:</p>
-                            <p class="font-medium text-white font-mono text-sm">0110083930008321182501</p>
-                        </div>
-                        <div>
-                            <p class="text-[11px] text-white/60">Alias:</p>
-                            <p class="font-medium text-white font-mono text-sm">Thomas.martina.ars</p>
-                        </div>
-                    </div>
-
-                    <!-- Cuenta en Dólares -->
+                    <!-- Cuenta en Dólares (Arriba) -->
                     <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-left">
                         <p class="text-xs text-white uppercase tracking-wider mb-2 font-semibold">🇺🇸 Cuenta en Dólares (USD)</p>
                         <div class="mb-2">
@@ -280,6 +263,23 @@
                         <div>
                             <p class="text-[11px] text-white/60">Alias:</p>
                             <p class="font-medium text-white font-mono text-sm">Thomas.martina.usd</p>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta en Pesos (Abajo) -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-left">
+                        <p class="text-xs text-white uppercase tracking-wider mb-2 font-semibold">🇦🇷 Cuenta en Pesos (ARS)</p>
+                        <div class="mb-2">
+                            <p class="text-[11px] text-white/60">N° de cuenta:</p>
+                            <p class="font-medium text-white font-mono text-sm">CA $ 27090832118250</p>
+                        </div>
+                        <div class="mb-2">
+                            <p class="text-[11px] text-white/60">CBU:</p>
+                            <p class="font-medium text-white font-mono text-sm">0110083930008321182501</p>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-white/60">Alias:</p>
+                            <p class="font-medium text-white font-mono text-sm">Thomas.martina.ars</p>
                         </div>
                     </div>
                 </div>
@@ -425,7 +425,7 @@
             { name: "Cena en un rooftop de Estambul", usd: 200, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=80" },
             { name: "Noche de hotel en Bangkok", usd: 300, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&q=80" },
             { name: "Hoteles y tours guiados en Singapour", usd: 500, img: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=500&q=80" },
-            { name: "Paisajes internos por Tailandia", usd: 750, img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&q=80" },
+            { name: "Pasajes internos por Tailandia", usd: 750, img: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=500&q=80" },
             { name: "Hospedaje de lujo en Bali", usd: 1000, img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=500&q=80" },
             { name: "Alojamiento exclusivo en islas Phi Phi x 7 noches", usd: 1500, img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" },
             { name: "Pasaje ida y vuelta Buenos Aires - Sudeste", usd: 2000, img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=80" }
