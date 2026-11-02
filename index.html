@@ -32,7 +32,7 @@
 </head>
 <body class="bg-vino text-white font-sans antialiased">
 
-    <!-- Hero Section con la foto que subiste de fondo -->
+    <!-- Hero Section con la foto de fondo -->
     <header class="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center z-0 filter brightness-50" style="background-image: url('f3ea323c-2686-4df3-8750-ac6255cf9bd9.jpg');"></div>
         <div class="absolute inset-0 bg-black/40 z-0"></div>
@@ -195,26 +195,27 @@
                 </div>
             </div>
 
-            <div class="space-y-4">
-                <input type="text" id="rsvpName" placeholder="Nombre y apellido" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
-                <input type="email" id="rsvpEmail" placeholder="Mail" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
-                <input type="tel" id="rsvpPhone" placeholder="Celular" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+            <!-- Formulario RSVP con campos obligatorios -->
+            <form id="rsvpForm" onsubmit="event.preventDefault(); submitRsvp();" class="space-y-4">
+                <input type="text" id="rsvpName" placeholder="Nombre y apellido *" required class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+                <input type="email" id="rsvpEmail" placeholder="Mail *" required class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
+                <input type="tel" id="rsvpPhone" placeholder="Celular *" required class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
                 
-                <select id="rsvpMenu" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 focus:outline-none focus:border-white appearance-none">
-                    <option value="" disabled selected class="text-gray-400">Menú especial (Opcional)</option>
+                <select id="rsvpMenu" required class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 focus:outline-none focus:border-white appearance-none">
+                    <option value="" disabled selected class="text-gray-400">Menú especial *</option>
                     <option value="Ninguno" class="bg-vino text-white">Ninguno</option>
                     <option value="Celíaco" class="bg-vino text-white">Celíaco</option>
                     <option value="Vegetariano" class="bg-vino text-white">Vegetariano</option>
                     <option value="Vegano" class="bg-vino text-white">Vegano</option>
                     <option value="Infantil" class="bg-vino text-white">Infantil</option>
                 </select>
-            </div>
-            
-            <div class="mt-8">
-                <button onclick="submitRsvp()" id="submitRsvpBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
-                    Confirmar
-                </button>
-            </div>
+
+                <div class="mt-8">
+                    <button type="submit" id="submitRsvpBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -267,16 +268,17 @@
                     </div>
                 </div>
 
-                <div class="mt-4 pt-4 border-t border-white/10">
-                    <input type="text" id="guestName" placeholder="Tu Nombre y Apellido" class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 mb-3 placeholder-white/50 focus:outline-none focus:border-white">
+                <!-- Formulario de Regalos con campo de nombre obligatorio -->
+                <form id="giftForm" onsubmit="event.preventDefault(); submitGift();" class="mt-4 pt-4 border-t border-white/10 space-y-3">
+                    <input type="text" id="guestName" placeholder="Tu Nombre y Apellido *" required class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white">
                     <textarea id="guestMessage" rows="2" placeholder="Dejanos un mensajito..." class="w-full bg-white/10 border border-white/20 text-white rounded-lg p-3 placeholder-white/50 focus:outline-none focus:border-white resize-none"></textarea>
-                </div>
-            </div>
-            
-            <div class="mt-6">
-                <button onclick="submitGift()" id="submitBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
-                    Confirmar
-                </button>
+                    
+                    <div class="mt-6">
+                        <button type="submit" id="submitBtn" class="w-full bg-white hover:bg-gray-100 text-vino font-bold py-3 px-6 rounded-full transition-colors duration-300 shadow-lg">
+                            Confirmar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -374,7 +376,7 @@
             try {
                 await addDoc(collection(db, 'regalos_casamiento'), {
                     regalo: giftName,
-                    invitado: name || "Anónimo",
+                    invitado: name,
                     mensaje: message || "",
                     fecha: new Date().toISOString()
                 });
@@ -390,7 +392,7 @@
                     nombre: name,
                     email: email,
                     celular: phone,
-                    menu: menu || "Ninguno",
+                    menu: menu,
                     fecha: new Date().toISOString()
                 });
             } catch (err) {
@@ -489,6 +491,8 @@
             const name = document.getElementById("guestName").value.trim();
             const message = document.getElementById("guestMessage").value.trim();
             
+            if (!name) return;
+
             const btn = document.getElementById("submitBtn");
             btn.innerText = "Guardando...";
             btn.disabled = true;
@@ -525,13 +529,7 @@
             const phone = document.getElementById("rsvpPhone").value.trim();
             const menu = document.getElementById("rsvpMenu").value;
 
-            if (!name) {
-                const nameInput = document.getElementById("rsvpName");
-                nameInput.placeholder = "⚠️ Por favor ingresá tu nombre";
-                nameInput.classList.add("border-red-400");
-                setTimeout(() => { nameInput.classList.remove("border-red-400"); }, 2000);
-                return;
-            }
+            if (!name || !email || !phone || !menu) return;
             
             const btn = document.getElementById("submitRsvpBtn");
             btn.innerText = "Guardando...";
